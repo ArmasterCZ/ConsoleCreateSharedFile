@@ -7,7 +7,7 @@ using System.Configuration;
 using System.IO;
 using System.Security.AccessControl;
 
-// V0:00:05
+// V0:00:07
 // program for create folders for offline files with share rights
 
 namespace ConsoleCreateSharedFile
@@ -46,11 +46,18 @@ namespace ConsoleCreateSharedFile
 
             Console.WriteLine(fileSharePathFull);
             Console.WriteLine(fileServerPathFull);
+
+            string path = "C:\\složka";
+            fileNew(path);
+            FileSystemRights right = new FileSystemRights();
+            AccessControlType access = new AccessControlType();
+            
+            AddDirectorySecurity("složka", "jvaldaf", right, access);
             Console.ReadLine();
         }
 
         //read string from .config
-        static string ReadSetting(string key)
+        static string readSetting(string key)
         {
             //string test1 = ConfigurationManager.AppSettings["Setting1"]; //one line simple load
 
@@ -67,8 +74,9 @@ namespace ConsoleCreateSharedFile
         }
 
         // Create File
-        private void createFile(string path)
+        public static void fileNew(string path)
         {
+            //check if folder exist and create new
             System.IO.Directory.CreateDirectory(path);
 
             /*try
@@ -91,6 +99,11 @@ namespace ConsoleCreateSharedFile
             {
                 Console.WriteLine(e);
             }*/
+        }
+
+        public static void removeDirectoryRight()
+        {
+
         }
 
         // check // Adds an ACL entry on the specified directory for the specified account.
