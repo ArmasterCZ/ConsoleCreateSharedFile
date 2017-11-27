@@ -7,7 +7,7 @@ using System.Configuration;
 using System.IO;
 using System.Security.AccessControl;
 
-// V0:00:08
+// V0:00:09
 // program for create folders for offline files with share rights
 
 namespace ConsoleCreateSharedFile
@@ -22,7 +22,7 @@ namespace ConsoleCreateSharedFile
             //spuštění zvuku
             //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\mywavfile.wav");
             
-            string pathWAV = @"D:\Users\jvaldauf\Documents\Visual Studio 2015\GITHUB\ConsoleCreateSharedFile\ConsoleCreateSharedFile\resources\houk.wav";
+            string pathWAV = Directory.GetCurrentDirectory() + "\\resources\\houk.wav";
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(pathWAV);
             player.Play();
             Console.WriteLine("houkám");
