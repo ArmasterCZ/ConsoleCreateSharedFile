@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.IO;
 using System.Security.AccessControl;
+//using Microsoft.HomeServer.SDK.Interop.v1;
 
-// V0:00:09
+// V0:00:10
 // program for create folders for offline files with share rights
 
 namespace ConsoleCreateSharedFile
@@ -19,9 +20,33 @@ namespace ConsoleCreateSharedFile
             //načtení informací z config
             //string test1 = ReadSetting("Setting1");
 
+            //nová složka
+            string path = "C:\\Nová_složka\\složka na test sdílení";
+            fileNew(path);
+
+            //oprávnění
+            /*
+            Console.WriteLine(path);
+            Console.WriteLine("");
+            RemoveDirectorySecurity(path, @"Authenticated Users", FileSystemRights.ReadData, AccessControlType.Allow);
+            AddDirectorySecurity(path, @"sitel\Domain Admins", FileSystemRights.ReadData, AccessControlType.Allow);
+            AddDirectorySecurity(path, @"sitel\ftester", FileSystemRights.ReadData, AccessControlType.Allow);
+            ReadDirectoryRight(path);
+            */
+
+            //sdílení
+            WHSInfoClass pInfo = new WHSInfoClass();
+
+
+            Console.ReadLine();
+        }
+
+
+        public static void playSound()
+        {
             //spuštění zvuku
             //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\mywavfile.wav");
-            
+
             string pathWAV = Directory.GetCurrentDirectory() + "\\resources\\houk.wav";
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(pathWAV);
             player.Play();
@@ -29,19 +54,6 @@ namespace ConsoleCreateSharedFile
             Console.ReadLine();
             player.Stop();
             Console.WriteLine("nehoukám");
-
-
-            string path = "C:\\Nová_složka\\složka na test oprávnění";
-            fileNew(path);
-
-            Console.WriteLine(path);
-            Console.WriteLine("");
-            RemoveDirectorySecurity(path, @"Authenticated Users", FileSystemRights.ReadData, AccessControlType.Allow);
-            AddDirectorySecurity(path, @"sitel\Domain Admins", FileSystemRights.ReadData, AccessControlType.Allow);
-            AddDirectorySecurity(path, @"sitel\ftester", FileSystemRights.ReadData, AccessControlType.Allow);
-            ReadDirectoryRight(path);
-
-            Console.ReadLine();
         }
 
         // create paths for offlineFiles
